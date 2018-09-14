@@ -233,14 +233,13 @@ public class ArticleDetailFragment extends Fragment implements
 //                                + " by <font color='#ffffff'>"
 //                                + mCursor.getString(ArticleLoader.Query.AUTHOR)
 //                                + "</font>"));
-                toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE) + Html.fromHtml("<br>" +
-                        DateUtils.getRelativeTimeSpanString(
-                                publishedDate.getTime(),
-                                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                                DateUtils.FORMAT_ABBREV_ALL).toString()
-                                + " by <font color='#ffffff'>"
-                                + mCursor.getString(ArticleLoader.Query.AUTHOR)
-                                + "</font>"));
+                toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+                toolbar.setSubtitle(Html.fromHtml(" <font color='#ffffff'>by "
+                        + mCursor.getString(ArticleLoader.Query.AUTHOR)
+                        + "</font> " + DateUtils.getRelativeTimeSpanString(
+                        publishedDate.getTime(),
+                        System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+                        DateUtils.FORMAT_ABBREV_ALL).toString()));
 
             } else {
                 // If date is before 1902, just show the string
@@ -248,10 +247,10 @@ public class ArticleDetailFragment extends Fragment implements
 //                        outputFormat.format(publishedDate) + " by <font color='#ffffff'>"
 //                        + mCursor.getString(ArticleLoader.Query.AUTHOR)
 //                                + "</font>"));
-                toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE) + Html.fromHtml("<br>" +
-                        outputFormat.format(publishedDate) + " by <font color='#ffffff'>"
+                toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+                toolbar.setSubtitle(Html.fromHtml(" <font color='#ffffff'>by "
                         + mCursor.getString(ArticleLoader.Query.AUTHOR)
-                                + "</font>"));
+                        + "</font> " + outputFormat.format(publishedDate)));
 
             }
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY).replaceAll("(\r\n|\n)", "<br />")));
